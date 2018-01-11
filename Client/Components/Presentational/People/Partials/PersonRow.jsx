@@ -16,8 +16,6 @@ export default class PersonRow extends React.PureComponent {
 
   render() {
     let { person } = this.props;
-    let parts = person.homeworld.split('/');
-    let planetId = parts.pop() || parts.pop();
     return (
       <Wrapper>
         <TableCell>
@@ -36,7 +34,7 @@ export default class PersonRow extends React.PureComponent {
           {moment(person.edited).format('MMM DD, Y')}
         </TableCell>
         <TableCell>
-          <Link to={`/planet/${planetId}`}>Planet {planetId}</Link>
+          <Link to={`/planet/${person.planetId}`}>Planet {person.planetId}</Link>
         </TableCell>
       </Wrapper>
     );

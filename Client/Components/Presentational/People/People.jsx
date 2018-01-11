@@ -41,9 +41,15 @@ export default class People extends React.Component {
     let { filters } = this.state;
     hasMore = (reset) ? true : hasMore;
     if(loading === false && hasMore === true){
-      getPeople(this.page, filters, reset);
+      getPeople(this.page, reset);
       this.page = this.page + 1;
     }
+  }
+
+  sort(type){
+    let integer = false;
+    if(type == 'height' || name == 'mass') integer = true;
+    this.props.sortPeople(type, this.props.people, integer);
   }
 
   render() {
@@ -56,12 +62,12 @@ export default class People extends React.Component {
           <FixedTable className="table table-bordered">
             <thead>
               <tr>
-                <TableHeadCell>Name</TableHeadCell>
-                <TableHeadCell>Height</TableHeadCell>
-                <TableHeadCell>Mass</TableHeadCell>
-                <TableHeadCell>Created</TableHeadCell>
-                <TableHeadCell>Edited</TableHeadCell>
-                <TableHeadCell>Planet</TableHeadCell>
+                <TableHeadCell><a href="javascript:;" onClick={() => this.sort('name')}>Name</a></TableHeadCell>
+                <TableHeadCell><a href="javascript:;" onClick={() => this.sort('height')}>Height</a></TableHeadCell>
+                <TableHeadCell><a href="javascript:;" onClick={() => this.sort('mass')}>Mass</a></TableHeadCell>
+                <TableHeadCell><a href="javascript:;" onClick={() => this.sort('created')}>Created</a></TableHeadCell>
+                <TableHeadCell><a href="javascript:;" onClick={() => this.sort('edited')}>Edited</a></TableHeadCell>
+                <TableHeadCell><a href="javascript:;" onClick={() => this.sort('planetId')}>Planet</a></TableHeadCell>
               </tr>
             </thead>
             <TableBody>              

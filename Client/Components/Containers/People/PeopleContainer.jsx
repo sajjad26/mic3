@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import People from '../../Presentational/People/People';
 import { 
   getPeople,
+  sortPeople,
   resetPeople, 
   setPeopleLoading, 
   setPeopleHasMore 
@@ -18,13 +19,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPeople(page = 1, filters = {}, reset = false){
+    getPeople(page = 1, reset = false){
       if(reset === true){
         dispatch(resetPeople());
         dispatch(setPeopleHasMore(true));
       }
       dispatch(setPeopleLoading(true));
-      return getPeople(page, filters).then((action) => {
+      return getPeople(page).then((action) => {
         dispatch(setPeopleLoading(false));
         if(action.payload.length === 0){
           dispatch(setPeopleHasMore(false));
@@ -33,6 +34,10 @@ const mapDispatchToProps = (dispatch) => {
       }).catch((err) => {
         dispatch(setPeopleLoading(false));
       });
+    },
+    sortPeople(type, people, integer = false){
+      dispatch(resetPeople());
+      return dispatch(sortPeople(type, people, integer));
     }
   }
 }

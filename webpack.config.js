@@ -19,7 +19,7 @@ module.exports = {
   devServer: {
     compress: false,
     overlay: true,
-    port: 8080,
+    port: 8000,
     historyApiFallback: {
       index: '/app.html'
     },
