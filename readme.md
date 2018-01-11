@@ -1,4 +1,4 @@
-###Running Instructions
+### Running Instructions
 
 To run the application, perform the following steps
 
