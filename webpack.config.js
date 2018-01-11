@@ -48,6 +48,9 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './node_modules/bootstrap/dist', to: './bootstrap' },
       { from: './Client/Assets', to: './assets' }
-    ])
+    ]),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    })
   ]
 };
